@@ -1,0 +1,57 @@
+#include "iostream"
+using namespace std;
+class MyCalendarTwo {
+public:
+    MyCalendarTwo():booked{0},n(0),overlap{0},m(0){
+        
+    }
+    
+    bool book(int start, int end) {
+        if (start>=end)return false;
+        for (int i=0;i<n;i++)
+        {
+            if(intersect(booked[2*i],booked[2*i+1],start,end))
+            {
+                //得到重叠部分
+             int tem1 = (booked[2*i]>start) ?booked[2*i]:start;
+             int tem2 = (booked[2*i+1]>end)?booked[2*i+1]:end;
+                //判断重叠部分是否再次重叠
+             for (int j=0;j<m;j++)
+                 if(intersect(overlap[2*j],overlap[2*j+1],tem1,tem2))
+                     return false;
+             overlap[2*m] = tem1;
+             overlap[2*m+1] = tem2;
+             m++;
+            }
+        }
+        booked[2*n]=start;
+        booked[2*n+1]=end;
+        n++;
+        return true;               
+    }
+private:
+    int booked[2000];
+    int n;//n对应booked元素个数
+    int overlap[2000];
+    int m;
+    inline bool intersect(int a,int b,int c,int d){
+        //a,b对应一个booked元素的值，c,d对应book元素的值
+        if (c>=b||d<=a)return false;
+        return true;
+    }
+};
+
+/**
+ * Your MyCalendarTwo object will be instantiated and called as such:
+ * MyCalendarTwo obj = new MyCalendarTwo();
+ * bool param_1 = obj.book(start,end);
+ */
+int main()
+{
+ MyCalendarTwo a;
+ bool param_1 = a.book(10,20);
+ bool param_2 = a.book(50,60);
+ bool param_3 = a.book(10,40);
+ bool param_4 = a.book(5,15);
+ cout<<param_4<<endl;
+}

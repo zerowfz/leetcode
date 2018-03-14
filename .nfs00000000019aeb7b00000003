@@ -1,0 +1,35 @@
+class MyCalendarTwo {
+public:
+    MyCalendarTwo():booked(0),n(0) {
+        
+    }
+    
+    bool book(int start, int end) {
+        if (start>=end)return false;
+        int j=0;
+        for (int i=0;i<n;i++)
+        {
+            if(intersect(booked[2*i],booked[2*i+1],start,end))
+                j++;
+            if (j>2)return false;
+        }
+        booked[2*n]=start;
+        booked[2*n+1]=end;
+        n++;
+        return true;               
+    }
+private:
+    int booked[2000];
+    int n;//n对应booked元素个数
+    inline bool intersect(int a,int b,int c,int d){
+        //a,b对应一个booked元素的值，c,d对应book元素的值
+        if (c>=b||d<=a)return false;
+        return true;
+    }
+};
+
+/**
+ * Your MyCalendarTwo object will be instantiated and called as such:
+ * MyCalendarTwo obj = new MyCalendarTwo();
+ * bool param_1 = obj.book(start,end);
+ */
