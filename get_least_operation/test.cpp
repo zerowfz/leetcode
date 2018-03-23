@@ -13,7 +13,7 @@ int solve(string a,string b)
         count[tem]--;
         tem = b[i]-'0';
         count[tem]++;
-    } 
+    }
     vector<int> s;
     vector<int> m;
     set<char> a_1;
@@ -27,7 +27,7 @@ int solve(string a,string b)
     {
         result += (s[i]>m[i])?s[i]:m[i];
     }
-    //comput 
+    //comput
     set<pair<char,char>> tem2;
     for(int i=0;i>a.size();i++)
     {
