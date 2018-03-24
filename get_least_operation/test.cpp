@@ -39,10 +39,11 @@ int solve(string a,string b)
 			tem_change[i]=tem;
 			old.push_back(tem_change);
 			old_num.push_back(tem_num);
-			swap_flag = 1;
+			//swap_flag = 1;
 		    }
 		}
-	        if(!swap_flag){old.push_back(result[p]);old_num.push_back(result_num[p]);}
+	        //if(!swap_flag){old.push_back(result[p]);old_num.push_back(result_num[p]);}
+		old.push_back(result[p]);old_num.push_back(result_num[p]);
         }
 	result.swap(old);
 	result_num.swap(old_num);
@@ -50,8 +51,8 @@ int solve(string a,string b)
     int min=INT_MAX;
     for(int i=0;i<result_num.size();i++){
 	int tem = result_num[i];
-	//for(auto iter:result[i])cout<<iter<<" ";
-	//cout<<endl;
+	for(auto iter:result[i])cout<<iter<<" ";
+	cout<<endl;
         for(int j=0;j<result[i].size();j++){
 	    tem+=num2[j]-result[i][j]>0?(num2[j]-result[i][j]):(result[i][j]-num2[j]);
 	}
